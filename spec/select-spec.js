@@ -26,11 +26,16 @@ describe('Select component tests', function() {
 		];
 		this.renderer.render(<Select list={users} />);
 		const result = this.renderer.getRenderOutput();
-		expect(result.props.children[1]).toEqual(
-			<select multiple>
-				<option key="1" value={1}>Bernd</option>
-				<option key="2" value={2}>Brot</option>
-			</select>
-		);
+		const select = result.props.children[1];
+		expect(select.props.children[0].props).toEqual({
+			onClick: jasmine.any(Function),
+			value: 1,
+			children: 'Bernd'
+		});
+		expect(select.props.children[1].props).toEqual({
+			onClick: jasmine.any(Function),
+			value: 2,
+			children: 'Brot'
+		});
 	});
 });
