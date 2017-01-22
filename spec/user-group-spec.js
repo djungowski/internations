@@ -16,6 +16,8 @@ describe('User group component tests', function() {
 	it('has a default state', function() {
 	    const userGroup = ReactTestUtils.renderIntoDocument(<UserGroup />);
 		expect(userGroup.state).toEqual({
+			users: jasmine.any(Array),
+			groups: jasmine.any(Array),
 			selectedUsers: [],
 			selectedGroups: []
 		});
