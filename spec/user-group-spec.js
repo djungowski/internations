@@ -41,11 +41,11 @@ describe('User group component tests', function() {
 		});
 	});
 
-	describe('#addUserToGroup', function() {
+	describe('#addUsersToGroup', function() {
 	    it('prevents the default', function() {
 	        const eventMock = jasmine.createSpyObj('event', ['preventDefault']);
 			const userGroup = ReactTestUtils.renderIntoDocument(<UserGroup />);
-			userGroup.addUserToGroup(eventMock);
+			userGroup.addUsersToGroup(eventMock);
 			expect(eventMock.preventDefault).toHaveBeenCalled();
 	    });
 	});
