@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
+const concat = require('gulp-concat');
 
 const buildDirectory = 'build';
 const assetsDirectory = buildDirectory + '/assets';
@@ -11,22 +12,26 @@ gulp.task('vendor-assets-js', () => {
 	];
 
 	return gulp.src(webFiles)
-		.pipe(gulp.dest(assetsDirectory + '/js/vendor'));
+		.pipe(concat('vendor.js'))
+		.pipe(gulp.dest(assetsDirectory + '/js/'));
 });
 
 gulp.task('lib-js', () => {
-	return gulp.src('lib/**/*').pipe(babel({
-		plugins: [
-			'transform-react-jsx'
-		]
-	})).pipe(gulp.dest(assetsDirectory + '/js/lib/'));
+	return gulp.src('lib/**/*')
+		.pipe(babel({
+			plugins: [
+				'transform-react-jsx'
+			]
+		}))
+		.pipe(concat('app.js'))
+		.pipe(gulp.dest(assetsDirectory + '/js/'));
 });
 
 gulp.task('templates', () => {
 	return gulp.src('templates/**/*').pipe(gulp.dest(buildDirectory));
 });
 
-gulp.task('dev', () => {
+gulp.task('dev', ['build'], () => {
 	gulp.watch('lib/**/*', ['lib-js']);
 });
 
