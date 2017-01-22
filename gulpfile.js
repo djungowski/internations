@@ -26,6 +26,10 @@ gulp.task('templates', () => {
 	return gulp.src('templates/**/*').pipe(gulp.dest(buildDirectory));
 });
 
+gulp.task('dev', () => {
+	gulp.watch('lib/**/*', ['lib-js']);
+});
+
 gulp.task('build', ['vendor-assets-js', 'templates', 'lib-js']);
 
 gulp.task('default', ['build']);
