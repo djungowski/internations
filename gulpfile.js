@@ -34,7 +34,7 @@ gulp.task('templates', () => {
 });
 
 gulp.task('dev', ['build'], () => {
-	return gulp.watch('lib/**/*', ['lib-js']);
+	return gulp.watch('lib/**/*', ['build-js']);
 });
 
 gulp.task('build', ['templates', 'build-js']);
