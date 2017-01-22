@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
+const webpack = require('gulp-webpack');
 
 const buildDirectory = 'build';
 const assetsDirectory = buildDirectory + '/assets';
@@ -9,21 +10,22 @@ const babelOptions = {
 	plugins: ['transform-react-jsx']
 };
 
-gulp.task('vendor-assets-js', () => {
-	const webFiles = [
-		'node_modules/react/dist/react.min.js',
-		'node_modules/react-dom/dist/react-dom.min.js'
-	];
-
-	return gulp.src(webFiles)
-		.pipe(concat('vendor.js'))
-		.pipe(gulp.dest(assetsDirectory + '/js/'));
-});
-
-gulp.task('lib-js', () => {
+gulp.task('build-js', () => {
 	return gulp.src('lib/**/*')
-		.pipe(babel(babelOptions))
-		.pipe(concat('app.js'))
+		.pipe(webpack({
+			module: {
+				loaders: [
+					{
+						test: /\.js$/,
+						loader: 'babel-loader',
+						query: babelOptions
+					}
+				],
+			},
+			output: {
+				filename: 'app.js'
+			}
+		}))
 		.pipe(gulp.dest(assetsDirectory + '/js/'));
 });
 
@@ -35,6 +37,6 @@ gulp.task('dev', ['build'], () => {
 	return gulp.watch('lib/**/*', ['lib-js']);
 });
 
-gulp.task('build', ['vendor-assets-js', 'templates', 'lib-js']);
+gulp.task('build', ['templates', 'build-js']);
 
 gulp.task('default', ['build']);
