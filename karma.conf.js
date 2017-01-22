@@ -15,10 +15,6 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/react/dist/react-with-addons.min.js',
-      'node_modules/react-dom/dist/react-dom.min.js',
-//      'node_modules/react-dom/lib/ReactTestUtils.js',
-      'lib/**/*',
       'spec/**/*[sS]pec.js'
     ],
 
@@ -31,9 +27,24 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'lib/**/*': ['babel'],
-      'spec/**/*[sS]pec.js': ['babel']
+      'lib/**/*': ['webpack'],
+      'spec/**/*[sS]pec.js': ['webpack']
     },
+
+	webpack: {
+		module: {
+			loaders: [
+				{
+					test: /\.js$/,
+					loader: 'babel-loader',
+					query: {
+						presets: ['es2015'],
+						plugins: ['transform-react-jsx']
+					}
+				}
+			],
+		}
+	},
 
     babelPreprocessor: {
 		options: {
