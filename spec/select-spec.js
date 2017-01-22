@@ -44,15 +44,17 @@ describe('Select component tests', function() {
 			const selectedOptions = [1, 2, 3];
 			const callback = jasmine.createSpy('clickHandler');
 			const result = ReactTestUtils.renderIntoDocument(<Select clickHandler={callback} />);
-			const eventMock = {
-				target: {
-					parentNode: {
-						selectedOptions: selectedOptions
-					}
-				}
-			};
+			const eventMock = { target: { parentNode: { selectedOptions: selectedOptions } } };
 			result.onClick(eventMock);
 			expect(callback).toHaveBeenCalledWith(selectedOptions);
 	    });
+
+		it('does not break if no click handler is provided', function() {
+			const callback = jasmine.createSpy('clickHandler');
+			const result = ReactTestUtils.renderIntoDocument(<Select />);
+			const eventMock = {};
+			result.onClick(eventMock);
+			expect(callback).not.toHaveBeenCalledWith();
+		});
 	});
 });
