@@ -20,13 +20,16 @@ describe('Select component tests', function() {
 	});
 
 	it('renders the select list', function() {
-	    const users = ['Bernd', 'Brot'];
+		const users = [
+			{id: 1, name: 'Bernd'},
+			{id: 2, name: 'Brot'}
+		];
 		this.renderer.render(<Select list={users} />);
 		const result = this.renderer.getRenderOutput();
 		expect(result.props.children[1]).toEqual(
 			<select multiple>
-				<option>Bernd</option>
-				<option>Brot</option>
+				<option key="1" value={1}>Bernd</option>
+				<option key="2" value={2}>Brot</option>
 			</select>
 		);
 	});
