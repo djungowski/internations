@@ -1,13 +1,19 @@
 const gulp = require('gulp');
 
-gulp.task('vendor-web', function () {
+const buildDirectory = 'build';
+
+gulp.task('vendor-assets', function () {
 	const webFiles = [
 		'node_modules/react/dist/react.min.js',
 		'node_modules/react-dom/dist/react-dom.min.js'
 	];
 
 	gulp.src(webFiles)
-		.pipe(gulp.dest('build/assets/js'));
+		.pipe(gulp.dest(buildDirectory + '/assets/js'));
 });
 
-gulp.task('default', ['vendor-web']);
+gulp.task('templates', function () {
+	gulp.src('templates/**/*').pipe(gulp.dest(buildDirectory));
+});
+
+gulp.task('default', ['vendor-assets', 'templates']);
