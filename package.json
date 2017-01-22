@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "node_modules/.bin/gulp",
-    "build": "node_modules/.bin/gulp"
+    "build": "node_modules/.bin/gulp",
+    "dev:server": "supervisor dev/server.js"
   },
   "repository": {
     "type": "git",
@@ -19,8 +20,10 @@
   },
   "homepage": "https://github.com/djungowski/internations#readme",
   "devDependencies": {
+    "express": "^4.14.0",
     "gulp": "^3.9.1",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "supervisor": "^0.12.0"
   }
 }
