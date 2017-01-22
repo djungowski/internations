@@ -38,4 +38,21 @@ describe('Select component tests', function() {
 			children: 'Brot'
 		});
 	});
+
+	describe('onClick', function() {
+	    it('calls the given clickHandler with the selected options', function() {
+			const selectedOptions = [1, 2, 3];
+			const callback = jasmine.createSpy('clickHandler');
+			const result = ReactTestUtils.renderIntoDocument(<Select clickHandler={callback} />);
+			const eventMock = {
+				target: {
+					parentNode: {
+						selectedOptions: selectedOptions
+					}
+				}
+			};
+			result.onClick(eventMock);
+			expect(callback).toHaveBeenCalledWith(selectedOptions);
+	    });
+	});
 });
