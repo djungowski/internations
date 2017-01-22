@@ -4,6 +4,10 @@ const concat = require('gulp-concat');
 
 const buildDirectory = 'build';
 const assetsDirectory = buildDirectory + '/assets';
+const babelOptions = {
+	presets: ['es2015'],
+	plugins: ['transform-react-jsx']
+};
 
 gulp.task('vendor-assets-js', () => {
 	const webFiles = [
@@ -18,11 +22,7 @@ gulp.task('vendor-assets-js', () => {
 
 gulp.task('lib-js', () => {
 	return gulp.src('lib/**/*')
-		.pipe(babel({
-			plugins: [
-				'transform-react-jsx'
-			]
-		}))
+		.pipe(babel(babelOptions))
 		.pipe(concat('app.js'))
 		.pipe(gulp.dest(assetsDirectory + '/js/'));
 });
@@ -32,7 +32,7 @@ gulp.task('templates', () => {
 });
 
 gulp.task('dev', ['build'], () => {
-	gulp.watch('lib/**/*', ['lib-js']);
+	return gulp.watch('lib/**/*', ['lib-js']);
 });
 
 gulp.task('build', ['vendor-assets-js', 'templates', 'lib-js']);
