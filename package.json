@@ -1,0 +1,23 @@
+{
+  "name": "internations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djungowski/internations.git"
+  },
+  "author": "Dominik Ehrenberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/djungowski/internations/issues"
+  },
+  "homepage": "https://github.com/djungowski/internations#readme",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
+}
