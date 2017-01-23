@@ -2,18 +2,20 @@ import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
 import UserGroup from '../lib/user-group';
 
-describe('User group component tests', function() {
-	beforeEach(function() {
-		this.renderer = ReactTestUtils.createRenderer();
+describe('User group component tests', () => {
+	let renderer;
+
+	beforeEach(() => {
+		renderer = ReactTestUtils.createRenderer();
 	});
 
-    it('can be rendered', function() {
-		this.renderer.render(<UserGroup />)
-		const result = this.renderer.getRenderOutput();
+    it('can be rendered', () => {
+		renderer.render(<UserGroup />)
+		const result = renderer.getRenderOutput();
 		expect(result.type).toBe('form');
     });
 
-	it('has a default state', function() {
+	it('has a default state', () => {
 	    const userGroup = ReactTestUtils.renderIntoDocument(<UserGroup />);
 		expect(userGroup.state).toEqual({
 			users: jasmine.any(Array),
@@ -23,8 +25,8 @@ describe('User group component tests', function() {
 		});
 	});
 
-	describe('#setSelectedUsers()', function() {
-	    it('alters the state', function() {
+	describe('#setSelectedUsers()', () => {
+	    it('alters the state', () => {
 			const selectedUsers = {};
 			const userGroup = ReactTestUtils.renderIntoDocument(<UserGroup />);
 			userGroup.setSelectedUsers(selectedUsers);
@@ -32,8 +34,8 @@ describe('User group component tests', function() {
 	    });
 	});
 
-	describe('#setSelectedGroups()', function() {
-		it('alters the state', function() {
+	describe('#setSelectedGroups()', () => {
+		it('alters the state', () => {
 			const selectedGroups = {};
 			const userGroup = ReactTestUtils.renderIntoDocument(<UserGroup />);
 			userGroup.setSelectedGroups(selectedGroups);
@@ -41,15 +43,15 @@ describe('User group component tests', function() {
 		});
 	});
 
-	describe('#addUsersToGroup', function() {
-	    it('prevents the default', function() {
+	describe('#addUsersToGroup', () => {
+	    it('prevents the default', () => {
 	        const eventMock = jasmine.createSpyObj('event', ['preventDefault']);
 			const userGroup = ReactTestUtils.renderIntoDocument(<UserGroup />);
 			userGroup.addUsersToGroup(eventMock);
 			expect(eventMock.preventDefault).toHaveBeenCalled();
 	    });
 
-		it('changes the groups for the selected users', function() {
+		it('changes the groups for the selected users', () => {
 			const eventMock = jasmine.createSpyObj('event', ['preventDefault']);
 			const userGroup = ReactTestUtils.renderIntoDocument(<UserGroup />);
 
