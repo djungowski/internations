@@ -3,6 +3,7 @@
 ## Setup
 ```bash
 git clone git@github.com:djungowski/internations.git
+cd internations
 npm install
 ```
 npm install automatically runs ```npm build``` after all packages have been installed
