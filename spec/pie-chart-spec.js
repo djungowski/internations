@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
 //import PieChart from '../lib/pie-chart';
 
-describe('PieChart component tests', function() {
+describe('PieChart component tests', () => {
 	let shallowRenderer;
 	let PieChart;
 	let Highcharts;
@@ -27,8 +27,8 @@ describe('PieChart component tests', function() {
 		expect(result.type).toBe('div');
 	});
 
-	describe('#componentDidMount', function() {
-	    it('creates a chart in the provided id', function() {
+	describe('#componentDidMount', () => {
+	    it('creates a chart in the provided id', () => {
 			const id = 'lorem-ipsum';
 			const groups =  [];
 			const users = [];
@@ -68,7 +68,7 @@ describe('PieChart component tests', function() {
 			pieChart.componentDidMount();
 		});
 
-		describe('componentDidUpdate', function() {
+		describe('componentDidUpdate', () => {
 		    it('sets the data correctly', function(done) {
 				const id = 'lorem-ipsum';
 				const groups =  [
