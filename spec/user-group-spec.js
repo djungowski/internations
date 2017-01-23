@@ -48,5 +48,32 @@ describe('User group component tests', function() {
 			userGroup.addUsersToGroup(eventMock);
 			expect(eventMock.preventDefault).toHaveBeenCalled();
 	    });
+
+		it('changes the groups for the selected users', function() {
+			const eventMock = jasmine.createSpyObj('event', ['preventDefault']);
+			const userGroup = ReactTestUtils.renderIntoDocument(<UserGroup />);
+
+			const selectedUsers = [
+				{value: 1},
+				{value: 6}
+			];
+			const selectedGroups = [
+				{value: 2},
+				{value: 5}
+			];
+
+			userGroup.setSelectedUsers(selectedUsers);
+			userGroup.setSelectedGroups(selectedGroups);
+			userGroup.addUsersToGroup(eventMock);
+
+			expect(userGroup.state.users[0].groups[0]).toBe(userGroup.state.groups[1])
+			expect(userGroup.state.users[0].groups[1]).toBe(userGroup.state.groups[4])
+
+			expect(userGroup.state.users[5].groups[0]).toBe(userGroup.state.groups[1])
+			expect(userGroup.state.users[5].groups[1]).toBe(userGroup.state.groups[4])
+
+			// Any other user must not have any groups
+			expect(userGroup.state.users[2].groups.length).toBe(0)
+		});
 	});
 });
