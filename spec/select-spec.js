@@ -30,12 +30,12 @@ describe('Select component tests', () => {
 		const result = shallowRenderer.getRenderOutput();
 		const select = result.props.children[1];
 		expect(select.props.children[0].props).toEqual({
-			onClick: jasmine.any(Function),
+			onMouseUp: jasmine.any(Function),
 			value: 1,
 			children: 'Bernd'
 		});
 		expect(select.props.children[1].props).toEqual({
-			onClick: jasmine.any(Function),
+			onMouseUp: jasmine.any(Function),
 			value: 2,
 			children: 'Brot'
 		});
