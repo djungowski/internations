@@ -58,3 +58,8 @@ The Build is done using gulp. The following targets are available
 |build-templates	|Only builds templates. Target: build/			|
 |dev				|Running the build automatically on filechange	|
 |default			|Runs the build									|
+
+Example:
+```bash
+node_modules/.bin/gulp build-js
+```
