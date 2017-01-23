@@ -50,7 +50,7 @@ gulp.task('dev', ['build'], () => {
 		'lib/**/*',
 		'css/**/*'
 	];
-	return gulp.watch(watchFiles, ['build-js', 'build-css']);
+	return gulp.watch(watchFiles, ['build']);
 });
 
 gulp.task('build', ['build-templates', 'build-js', 'build-css']);
