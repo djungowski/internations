@@ -22,6 +22,6 @@ describe('UserProperties component tests', function() {
 		const result = shallowRenderer.getRenderOutput();
 		expect(result.props.children[0]).toEqual(<p className="user-id">ID: {user.id}</p>);
 		expect(result.props.children[1]).toEqual(<p className="user-name">Name: {user.name}</p>);
-		expect(result.props.children[2]).toEqual(<p className="user-groups">Groups: Futurama, Animated</p>);
+		expect(result.props.children[2]).toEqual(<p className="user-groups">{["Groups: ", "Futurama, Animated"]}</p>);
 	});
 });
