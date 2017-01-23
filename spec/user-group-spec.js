@@ -3,15 +3,15 @@ import ReactTestUtils from 'react-addons-test-utils';
 import UserGroup from '../lib/user-group';
 
 describe('User group component tests', () => {
-	let renderer;
+	let shallowRenderer;
 
 	beforeEach(() => {
-		renderer = ReactTestUtils.createRenderer();
+		shallowRenderer = ReactTestUtils.createRenderer();
 	});
 
     it('can be rendered', () => {
-		renderer.render(<UserGroup />)
-		const result = renderer.getRenderOutput();
+		shallowRenderer.render(<UserGroup />)
+		const result = shallowRenderer.getRenderOutput();
 		expect(result.type).toBe('form');
     });
 
