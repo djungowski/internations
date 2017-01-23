@@ -41,7 +41,7 @@ gulp.task('build-js', () => {
 		.pipe(gulp.dest(assetsDirectory + '/js/'));
 });
 
-gulp.task('templates', () => {
+gulp.task('build-templates', () => {
 	return gulp.src('templates/**/*').pipe(gulp.dest(buildDirectory));
 });
 
@@ -53,6 +53,6 @@ gulp.task('dev', ['build'], () => {
 	return gulp.watch(watchFiles, ['build-js', 'build-css']);
 });
 
-gulp.task('build', ['templates', 'build-js', 'build-css']);
+gulp.task('build', ['build-templates', 'build-js', 'build-css']);
 
 gulp.task('default', ['build']);
