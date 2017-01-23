@@ -33,6 +33,8 @@
     "gulp-jasmine": "^2.4.2",
     "gulp-less": "^3.3.0",
     "gulp-webpack": "^1.5.0",
+    "highcharts": "^5.0.7",
+    "inject-loader": "^3.0.0-beta3",
     "karma": "^1.4.0",
     "karma-babel-preprocessor": "^6.0.1",
     "karma-jasmine": "^1.1.0",

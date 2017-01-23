@@ -1,11 +1,19 @@
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
-import UserGroup from '../lib/user-group';
 
 describe('User group component tests', () => {
 	let shallowRenderer;
+	let UserGroup;
 
 	beforeEach(() => {
+		const inject = require('inject-loader!../lib/user-group');
+
+		UserGroup = inject({
+			'./pie-chart': () => {
+				return <div></div>
+			}
+		}).default;
+
 		shallowRenderer = ReactTestUtils.createRenderer();
 	});
 
