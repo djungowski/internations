@@ -2,20 +2,22 @@ import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
 import Select from '../lib/select';
 
-describe('Select component tests', function() {
-	beforeEach(function() {
-		this.renderer = ReactTestUtils.createRenderer();
+describe('Select component tests', () => {
+	let shallowRenderer;
+
+	beforeEach(() => {
+		shallowRenderer = ReactTestUtils.createRenderer();
 	});
 
     it('can be rendered', function() {
-		this.renderer.render(<Select />)
-		const result = this.renderer.getRenderOutput();
+		shallowRenderer.render(<Select />)
+		const result = shallowRenderer.getRenderOutput();
 		expect(result.type).toBe('div');
 	});
 
 	it('renders the title', function() {
-	    this.renderer.render(<Select title="Michael Bluth" />);
-		const result = this.renderer.getRenderOutput();
+	    shallowRenderer.render(<Select title="Michael Bluth" />);
+		const result = shallowRenderer.getRenderOutput();
 		expect(result.props.children[0]).toEqual(<h2>Michael Bluth</h2>);
 	});
 
@@ -24,8 +26,8 @@ describe('Select component tests', function() {
 			{id: 1, name: 'Bernd'},
 			{id: 2, name: 'Brot'}
 		];
-		this.renderer.render(<Select list={users} />);
-		const result = this.renderer.getRenderOutput();
+		shallowRenderer.render(<Select list={users} />);
+		const result = shallowRenderer.getRenderOutput();
 		const select = result.props.children[1];
 		expect(select.props.children[0].props).toEqual({
 			onClick: jasmine.any(Function),
