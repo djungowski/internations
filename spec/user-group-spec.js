@@ -21,24 +21,33 @@ describe('User group component tests', () => {
 			users: jasmine.any(Array),
 			groups: jasmine.any(Array),
 			selectedUsers: [],
-			selectedGroups: []
+			selectedGroups: [],
+			currentUser: null
 		});
 	});
 
-	describe('#setSelectedUsers()', () => {
-	    it('alters the state', () => {
+	describe('#userClickHandler()', () => {
+	    it('sets the selected users', () => {
 			const selectedUsers = {};
 			const userGroup = ReactTestUtils.renderIntoDocument(<UserGroup />);
-			userGroup.setSelectedUsers(selectedUsers);
+			userGroup.userClickHandler(selectedUsers);
 			expect(userGroup.state.selectedUsers).toBe(selectedUsers);
 	    });
+
+		it('sets the currentUser', function() {
+			const selectedUsers = {};
+			const currentUser = {};
+			const userGroup = ReactTestUtils.renderIntoDocument(<UserGroup />);
+			userGroup.userClickHandler(selectedUsers, currentUser);
+			expect(userGroup.state.currentUser).toBe(currentUser);
+		});
 	});
 
-	describe('#setSelectedGroups()', () => {
-		it('alters the state', () => {
+	describe('#groupClickHandler()', () => {
+		it('sets the selected groups', () => {
 			const selectedGroups = {};
 			const userGroup = ReactTestUtils.renderIntoDocument(<UserGroup />);
-			userGroup.setSelectedGroups(selectedGroups);
+			userGroup.groupClickHandler(selectedGroups);
 			expect(userGroup.state.selectedGroups).toBe(selectedGroups);
 		});
 	});
@@ -64,8 +73,8 @@ describe('User group component tests', () => {
 				{value: 5}
 			];
 
-			userGroup.setSelectedUsers(selectedUsers);
-			userGroup.setSelectedGroups(selectedGroups);
+			userGroup.userClickHandler(selectedUsers);
+			userGroup.groupClickHandler(selectedGroups);
 			userGroup.addUsersToGroup(eventMock);
 
 			expect(userGroup.state.users[0].groups[0]).toBe(userGroup.state.groups[1])

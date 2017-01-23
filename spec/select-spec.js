@@ -42,13 +42,14 @@ describe('Select component tests', () => {
 	});
 
 	describe('onClick', () => {
-	    it('calls the given clickHandler with the selected options', () => {
+	    it('calls the given clickHandler with the selected options and the selected item', () => {
 			const selectedOptions = [1, 2, 3];
+			const selectedItem = {foo: 'bar'};
 			const callback = jasmine.createSpy('clickHandler');
 			const result = ReactTestUtils.renderIntoDocument(<Select clickHandler={callback} />);
 			const eventMock = { target: { parentNode: { selectedOptions: selectedOptions } } };
-			result.onClick(eventMock);
-			expect(callback).toHaveBeenCalledWith(selectedOptions);
+			result.onClick(eventMock, selectedItem);
+			expect(callback).toHaveBeenCalledWith(selectedOptions, selectedItem);
 	    });
 
 		it('does not break if no click handler is provided', () => {
